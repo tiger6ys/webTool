@@ -73,6 +73,7 @@
         <p id="mvoffset"></p>
 
         <button id="submitBtn" onclick="onStart()">计算</button>
+        <button id="resetBtn" onclick="onReset()">重置</button>
     </div>
     <script>
         function onStart() {
@@ -97,6 +98,14 @@
                     rvTxt.textContent = mstr;
                 }
             }
+        }
+
+        function onReset() {
+            document.getElementById("input1").value = "";
+            document.getElementById("input2").value = "";
+            document.getElementById("input3").value = "";
+            document.getElementById("lvoffset").textContent = "";
+            document.getElementById("mvoffset").textContent = "";
         }
     </script>
 </body>
