@@ -51,8 +51,8 @@
 
 <body>
     <div class="container">
-        <h1>tool</h1>
-        <p>JPY兑换CNY</p>
+        <h1>Tool</h1>
+        <p>JPY兑换CNY|U兑换CNY</p>
 
         <div class="input-group">
             <label for="input1">实时汇率：</label>
@@ -65,10 +65,13 @@
         </div>
 
         <div class="input-group">
-            <label for="input3">兑换金额(JPY)：</label>
+            <label for="input3">兑换金额：</label>
             <input type="number" id="input3" placeholder="请输入内容?...">
         </div>
-
+        <div class="input-group">
+            <label for="input4">比例(日元为100，u为1)：</label>
+            <input type="number" id="input4" placeholder="请输入内容..." value="1">
+        </div>
         <p id="lvoffset"></p>
         <p id="mvoffset"></p>
 
@@ -80,6 +83,8 @@
             var curv = parseFloat(document.getElementById("input1").value);
             var realv = parseFloat(document.getElementById("input2").value);
             var money = parseFloat(document.getElementById("input3").value);
+            var ratio = parseFloat(document.getElementById("input4").value);
+            if (!ratio) ratio = 1;
             if (curv && realv) {
                 var lvstr = "汇率差：";
                 var offset = (realv - curv) / curv;
@@ -89,8 +94,8 @@
                 //
                 if (money) {
                     var mstr = "结算金额：";
-                    var m1 = realv * (money / 100);
-                    var m2 = curv * (money / 100);
+                    var m1 = realv * (money / ratio);
+                    var m2 = curv * (money / ratio);
                     mstr += m1.toFixed(2);
                     var offset2 = (m1 - m2).toFixed(2);
                     mstr += `(差值：${offset2})`;
