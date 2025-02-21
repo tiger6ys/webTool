@@ -78,6 +78,34 @@
         <button id="submitBtn" onclick="onStart()">计算</button>
         <button id="resetBtn" onclick="onReset()">重置</button>
     </div>
+    <div class="container" id="ujishuan">
+        <h1>U计算</h1>
+        <p>JPY兑换CNY|U兑换CNY</p>
+
+        <div class="input-group">
+            <label for="input1">实时汇率：</label>
+            <input type="number" id="input1" placeholder="请输入内容...">
+        </div>
+
+        <div class="input-group">
+            <label for="input2">交易汇率：</label>
+            <input type="number" id="input2" placeholder="请输入内容...">
+        </div>
+
+        <div class="input-group">
+            <label for="input3">兑换金额：</label>
+            <input type="number" id="input3" placeholder="请输入内容?...">
+        </div>
+        <div class="input-group">
+            <label for="input4">比例(日元为100，u为1)：</label>
+            <input type="number" id="input4" placeholder="请输入内容..." value="1">
+        </div>
+        <p id="lvoffset"></p>
+        <p id="mvoffset"></p>
+
+        <button id="submitBtn" onclick="onStart()">计算</button>
+        <button id="resetBtn" onclick="onReset()">重置</button>
+    </div>
     <script>
         function onStart() {
             var curv = parseFloat(document.getElementById("input1").value);
