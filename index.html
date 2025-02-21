@@ -78,33 +78,25 @@
         <button id="submitBtn" onclick="onStart()">计算</button>
         <button id="resetBtn" onclick="onReset()">重置</button>
     </div>
+    <!-- u涨跌计算 -->
     <div class="container" id="ujishuan">
         <h1>U计算</h1>
-        <p>JPY兑换CNY|U兑换CNY</p>
 
         <div class="input-group">
-            <label for="input1">实时汇率：</label>
-            <input type="number" id="input1" placeholder="请输入内容...">
+            <label for="input1">起始价：</label>
+            <input type="number" id="input_start" placeholder="请输入内容...">
         </div>
 
         <div class="input-group">
-            <label for="input2">交易汇率：</label>
-            <input type="number" id="input2" placeholder="请输入内容...">
+            <label for="input2">涨跌价或涨跌百分比值：</label>
+            <input type="number" id="input_end" placeholder="请输入内容...">
         </div>
+        <input type="checkbox" id="u_ratio" name="hobby" value="baifenbi">
+        <label for="baifenbi">计算百分比</label>
+        <p id="u_result"></p>
 
-        <div class="input-group">
-            <label for="input3">兑换金额：</label>
-            <input type="number" id="input3" placeholder="请输入内容?...">
-        </div>
-        <div class="input-group">
-            <label for="input4">比例(日元为100，u为1)：</label>
-            <input type="number" id="input4" placeholder="请输入内容..." value="1">
-        </div>
-        <p id="lvoffset"></p>
-        <p id="mvoffset"></p>
-
-        <button id="submitBtn" onclick="onStart()">计算</button>
-        <button id="resetBtn" onclick="onReset()">重置</button>
+        <button id="submitBtn2" onclick="u_onStart()">计算</button>
+        <button id="resetBtn2" onclick="u_onReset()">重置</button>
     </div>
     <script>
         function onStart() {
@@ -139,6 +131,29 @@
             document.getElementById("input3").value = "";
             document.getElementById("lvoffset").textContent = "";
             document.getElementById("mvoffset").textContent = "";
+        }
+        //------------------u-----------------
+        function u_onStart() {
+            var v_start = parseFloat(document.getElementById("input_start").value);
+            var v_end = parseFloat(document.getElementById("input_end").value);
+            var ratio = document.getElementById("u_ratio");
+            if (v_start && v_end) {
+                if (ratio.checked) {
+                    var value = (v_end / 100) * v_start + v_start;
+                    document.getElementById("u_result").textContent = "涨跌终值：" + value.toFixed(2);
+                } else {
+                    var temp = (v_end - v_start) / v_start;
+                    temp *= 100;
+                    var str = temp.toFixed(2) + "%";
+                    document.getElementById("u_result").textContent = "涨跌百分比：" + str;
+                }
+            }
+        }
+
+        function u_onReset() {
+            document.getElementById("input_start").value = "";
+            document.getElementById("input_end").value = "";
+            document.getElementById("u_result").textContent = "";
         }
     </script>
 </body>
